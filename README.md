@@ -7,3 +7,31 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Simple Ads API
+
+This application aims to deal with advertisers and their advertisments with relations to this advertisments as advertisment category and advertisment tag.
+Schedule a daily email at 08:00 PM that will be sent to advertisers who have ads the next day as a remainder. 
+Ads filters (by tag, by category).
+Showing Advertiser Ads.
+
+Post man collection file name is PostmanCollection.json
+
+## Configuration
+
+Make the database migrations:
+
+```bash
+php artisan migrate
+```
+
+Seed the database with fake records:
+
+```bash
+php artisan db:seed
+```
+
+Run the task scheduler to send mails daily at 8:00:
+
+```bash
+php artisan schedule:work
+```
