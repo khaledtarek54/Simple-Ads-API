@@ -10,11 +10,14 @@
 # Simple Ads API
 
 This application aims to deal with advertisers and their advertisments with relations to this advertisments as advertisment category and advertisment tag.
+
 Schedule a daily email at 08:00 PM that will be sent to advertisers who have ads the next day as a remainder. 
+
 Ads filters (by tag, by category).
+
 Showing Advertiser Ads.
 
-Post man collection file name is PostmanCollection.json
+##Post man collection file name is PostmanCollection.json
 
 ## Configuration
 
