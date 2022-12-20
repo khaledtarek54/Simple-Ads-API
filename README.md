@@ -17,7 +17,9 @@ Ads filters (by tag, by category).
 
 Showing Advertiser Ads.
 
-## Post man collection file name is PostmanCollection.json
+## Postman collection 
+
+Filename: PostmanCollection.json
 
 ## Configuration
 
