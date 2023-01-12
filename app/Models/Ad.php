@@ -30,6 +30,10 @@ class Ad extends Model
     {
         return $this->belongsTo(Category::class,'category_id','id');
     }
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
 
     
 }
