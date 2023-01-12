@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AdResource;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\TagResource;
 use DateTime;
 use App\Models\Ad;
 use App\Models\Tag;
@@ -15,32 +18,36 @@ class AdController extends Controller
 {
     public function bycategory($id)
     {
-        $categories = Category::with('ads')->where('id', $id)->get();
-        $ads = collect();
-        foreach ($categories as $category) {
-            $ads->push($category->ads);
-        }
-        return response()->json(["Ads with The same category id", $ads]);
+        
+        $ads = Ad::with('categories')
+        ->whereHas('categories',function($query)use($id){
+            $query->where('id',$id);
+        })
+        ->get();
+        return TagResource::collection($ads);
+        
+        //return response()->json(["Ads with The same category id = ".$id, $fiteredad]);
     }
     public function bytag($id)
     {
-        $tags = Tag::with('ads')->where('id', $id)->get();
-        $ad = collect();
-        foreach ($tags as $tag) {
-            $ad->push($tag->ads);
-        }
-        return response()->json(["Ad filtered by tag id", $ad]);
+
+        $ad = Ad::with('tags')
+        ->whereHas('tags',function($query)use($id)
+        {
+          $query->where('id',$id);  
+        })
+        ->get();
+        return TagResource::collection($ad);
+        
+        
     }
     public function advertiserads($id)
     {
-        $advertisers = Advertiser::with('ads')
-            ->where('id', $id)
-            ->get();
-        $ads = collect();
-        foreach ($advertisers[0]->ads as $ad) {
-            $ads->push($ad);
-        }
-        return response()->json(["Advertiser Owned Ads",$ads]);
+    
+       return AdResource::collection(Ad::with('advertisers')
+       ->where('advertiser_id',$id)
+       ->get());
+        
     }
 
     public function mail()
