@@ -23,6 +23,12 @@ Filename: PostmanCollection.json
 
 ## Configuration
 
+Install dependencies:
+
+```bash
+composer update
+```
+
 Make the database migrations:
 
 ```bash
